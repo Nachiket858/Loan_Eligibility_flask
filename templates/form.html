@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ loan_type.capitalize() }} Loan Form</h2>
+
+<form action="{{ url_for('predict', loan_type=loan_type) }}" method="POST" id="loanForm">
+  {% for field in fields %}
+  <div class="form-step {% if not loop.first %}hidden{% endif %}">
+    <label for="{{ field.name }}">{{ field.label }}</label>
+    <input type="{{ field.type }}" name="{{ field.name }}" id="{{ field.name }}" required>
+    <div class="step-nav">
+      {% if not loop.first %}
+      <button type="button" class="prev-btn">Previous</button>
+      {% endif %}
+      {% if not loop.last %}
+      <button type="button" class="next-btn">Next</button>
+      {% else %}
+      <button type="submit">Submit</button>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</form>
+{% endblock %}

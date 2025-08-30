@@ -1,0 +1,26 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loan Eligibility Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/form.js') }}" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Loan Eligibility Predictor</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Loan Predictor</p>
+  </footer>
+</body>
+</html>

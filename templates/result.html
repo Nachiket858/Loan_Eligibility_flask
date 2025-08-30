@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Result for {{ loan_type.capitalize() }} Loan</h2>
+
+<div class="result-box">
+  <p><strong>Status:</strong> {{ result.result }}</p>
+  <h3>Feedback:</h3>
+  <ul>
+    {% for tip in result.feedback %}
+      <li>{{ tip }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="user-data">
+  <h3>Your Inputs</h3>
+  <ul>
+    {% for key, value in user_data.items() %}
+      <li><strong>{{ key.replace("_"," ").capitalize() }}:</strong> {{ value }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<a href="{{ url_for('index') }}" class="btn">Check Another Loan</a>
+{% endblock %}
