@@ -1,24 +1,26 @@
 {% extends "base.html" %}
-
 {% block content %}
-<h2>{{ loan_type.capitalize() }} Loan Form</h2>
+<div class="container">
+  <h2>{{ loan_type|capitalize }} Loan Application</h2>
+  <form method="post" action="/predict/{{ loan_type }}">
+    {% for field in fields %}
+      <div class="form-group mb-3">
+        <label>{{ field.label }}</label>
 
-<form action="{{ url_for('predict', loan_type=loan_type) }}" method="POST" id="loanForm">
-  {% for field in fields %}
-  <div class="form-step {% if not loop.first %}hidden{% endif %}">
-    <label for="{{ field.name }}">{{ field.label }}</label>
-    <input type="{{ field.type }}" name="{{ field.name }}" id="{{ field.name }}" required>
-    <div class="step-nav">
-      {% if not loop.first %}
-      <button type="button" class="prev-btn">Previous</button>
-      {% endif %}
-      {% if not loop.last %}
-      <button type="button" class="next-btn">Next</button>
-      {% else %}
-      <button type="submit">Submit</button>
-      {% endif %}
-    </div>
-  </div>
-  {% endfor %}
-</form>
+        {% if field.type == "select" %}
+          <select name="{{ field.name }}" class="form-control" required>
+            <option value="">-- Select --</option>
+            {% for choice in field.choices %}
+              <option value="{{ choice }}">{{ choice }}</option>
+            {% endfor %}
+          </select>
+        {% else %}
+          <input type="{{ field.type }}" name="{{ field.name }}" class="form-control" required>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Check Eligibility</button>
+  </form>
+</div>
 {% endblock %}

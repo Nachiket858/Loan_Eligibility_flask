@@ -1,26 +1,24 @@
 {% extends "base.html" %}
-
 {% block content %}
-<h2>Result for {{ loan_type.capitalize() }} Loan</h2>
+<div class="container">
+  <h2>{{ loan_type|capitalize }} Loan Eligibility Result</h2>
 
-<div class="result-box">
-  <p><strong>Status:</strong> {{ result.result }}</p>
-  <h3>Feedback:</h3>
+  <p><strong>Result:</strong> {{ result.result }}</p>
+  <h4>Feedback:</h4>
   <ul>
     {% for tip in result.feedback %}
       <li>{{ tip }}</li>
     {% endfor %}
   </ul>
-</div>
 
-<div class="user-data">
-  <h3>Your Inputs</h3>
+  <hr>
+  <h4>Your Input:</h4>
   <ul>
     {% for key, value in user_data.items() %}
-      <li><strong>{{ key.replace("_"," ").capitalize() }}:</strong> {{ value }}</li>
+      <li><b>{{ key.replace('_',' ')|capitalize }}:</b> {{ value }}</li>
     {% endfor %}
   </ul>
-</div>
 
-<a href="{{ url_for('index') }}" class="btn">Check Another Loan</a>
+  <a href="/" class="btn btn-secondary">Back to Home</a>
+</div>
 {% endblock %}

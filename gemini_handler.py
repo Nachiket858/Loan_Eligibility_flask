@@ -40,5 +40,8 @@ User Data: {user_data}
 
 Evaluate the loan eligibility.
 """
+    print(f"promt:::::::::{prompt}")
     response = evaluation_model.invoke(prompt)
+    print("r====================================================================================")
+    print(response)
     return response.dict()

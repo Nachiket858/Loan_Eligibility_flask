@@ -1,10 +1,13 @@
 {% extends "base.html" %}
-
 {% block content %}
-<h2>Select Loan Type</h2>
-<div class="loan-options">
-  <a href="{{ url_for('form', loan_type='home') }}" class="loan-btn">Home Loan</a>
-  <a href="{{ url_for('form', loan_type='education') }}" class="loan-btn">Education Loan</a>
-  <a href="{{ url_for('form', loan_type='business') }}" class="loan-btn">Business Loan</a>
+<div class="container">
+  <h2>Select Loan Type</h2>
+  <ul>
+    <li><a href="/form/home">Home Loan</a></li>
+    <li><a href="/form/education">Education Loan</a></li>
+    <li><a href="/form/business">Business Loan</a></li>
+    <li><a href="/form/car">Car Loan</a></li>
+    <li><a href="/form/personal">Personal Loan</a></li>
+  </ul>
 </div>
 {% endblock %}
