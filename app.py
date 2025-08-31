@@ -1,7 +1,7 @@
 # app.py
 from flask import Flask, render_template, request
 from loan_rules import loan_fields
-from gemini_handler import check_loan_eligibility
+from model_handler import check_loan_eligibility
 
 app = Flask(__name__)
 

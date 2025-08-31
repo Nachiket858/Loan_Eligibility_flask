@@ -21,17 +21,15 @@ class LoanEvaluation(BaseModel):
         description="Final loan eligibility evaluation"
     )
     feedback: List[str] = Field(
-        description="List of improvement suggestions for approval"
+         default_factory=lambda: ["No specific feedback provided."],
+        description=" List of improvement suggestions for approval "
     )
 
 # Wrap model with structured output
 evaluation_model = model.with_structured_output(LoanEvaluation)
 
 def check_loan_eligibility(loan_type: str, user_data: dict) -> dict:
-    """
-    Takes loan type + user data, calls Gemini with structured output,
-    returns dict with result + feedback.
-    """
+    
     prompt = f"""
 You are a loan eligibility predictor.
 
@@ -39,9 +37,10 @@ Loan Type: {loan_type}
 User Data: {user_data}
 
 Evaluate the loan eligibility.
+
 """
     print(f"promt:::::::::{prompt}")
     response = evaluation_model.invoke(prompt)
     print("r====================================================================================")
     print(response)
-    return response.dict()
+    return response
